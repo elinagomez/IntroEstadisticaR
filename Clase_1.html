@@ -178,46 +178,6 @@ class: inverse, center, middle
 ]
 ---
 
-## Algunos ejemplos: Webscrapping (APIs) 
-
-
-.codefontchico[
-
-```r
-tweets_eim &lt;- get_timeline("EscuelaMetodos", n = 2, token=twitter_token)
-```
-
-```
-## Warning: Could not authenticate you. (32)
-```
-
-```
-## Warning: Skipping unauthorized account: EscuelaMetodos
-```
-
-```r
-tweets_eim &lt;- select(tweets_eim, text, retweet_count, favorite_count)
-```
-]
-
-&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; text &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; retweet_count &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; favorite_count &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-
-
----
 
 ## Aplicaciones (shiny apps), paquetes y presentaciones
 
@@ -243,7 +203,7 @@ class: inverse, center, middle
 
 ## Aspectos generales
 
--  Docentes: Elina Gómez, Nicolás Schmidt (UMAD)
+-  Docentes: Elina Gómez, Fabricio Carneiro, Nicolás Schmidt (UMAD)
 
 -  Créditos: 6 
 

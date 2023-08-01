@@ -194,37 +194,6 @@ knitr::include_graphics("ima/ima8.jpg")
 ]
 ---
 
-## Algunos ejemplos: Webscrapping (APIs) 
-```{r tw, echo = FALSE, results='hide', message=FALSE, warning=FALSE}
-library("rtweet")
-library("dplyr")
-library("kableExtra")
-twitter_token <- create_token(
-  app = "Uruguayan electoral cicle2019",
-  consumer_key = "jiDmeaYrTvkIiLdxuXAZMXTeX",
-  consumer_secret = "TRUEGYuDvmQbiDRtCCORcXUcgY0Ziv5iUIQ60pyYyqAVG7A43W",
-  access_token = "1055812931986903041-KZ2EqHk1JBcbun2EPADj6Gpu7FMAGl",
-  access_secret = "wD6nLV39SMtbcf5LcUvABQTNwLxTW318CJMg0HDXYryN4", set_renv = FALSE)
-```
-
-.codefontchico[
-```{r tw2, echo = TRUE}
-tweets_eim <- get_timeline("EscuelaMetodos", n = 2, token=twitter_token)
-tweets_eim <- select(tweets_eim, text, retweet_count, favorite_count)
-```
-]
-
-```{r tw2b, echo = FALSE}
-tweets_eim$text <- gsub("[^\x01-\x7F]", "", tweets_eim$text)
-knitr::kable(tweets_eim, format = 'html', font_size = 7) %>% 
-    kable_styling(full_width = F)
-```
-
-```{r ej9bbb, echo = FALSE, results="hide"}
-rm(tweets_eim,twitter_token)
-```
-
----
 
 ## Aplicaciones (shiny apps), paquetes y presentaciones
 
@@ -250,7 +219,7 @@ class: inverse, center, middle
 
 ## Aspectos generales
 
--  Docentes: Elina Gómez, Nicolás Schmidt (UMAD)
+-  Docentes: Elina Gómez, Fabricio Carneiro, Nicolás Schmidt (UMAD)
 
 -  Créditos: 6 
 
