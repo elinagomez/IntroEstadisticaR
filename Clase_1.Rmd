@@ -275,7 +275,7 @@ Cada sesión tendrá los siguientes documentos:
 
 - Script con una solución para el ejercicio
 
-Todos los materiales de curso están colgados en la página web del curso: [https://github.com/elinagomez/IntroEstadisticaR](https://github.com/elinagomez/IntroEstadisticaR)
+Todos los materiales de curso están colgados en la página web del curso: [https://github.com/elinagomez/IntroEstadisticaR](https://github.com/elinagomez/IntroEstadisticaR) y en el [espacio EVA](https://eva.fcs.udelar.edu.uy/course/edit.php?id=1057) (Clave: introRumad) 
 
 ---
 
