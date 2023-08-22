@@ -7,6 +7,7 @@ output:
   xaringan::moon_reader:
     css: ["xaringan-themer.css", "estilo.css"]
     lib_dir: libs
+    self_contained: yes
     nature:
       highlightStyle: github
       countIncrementalSlides: false
