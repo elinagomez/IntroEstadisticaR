@@ -795,7 +795,7 @@ library(gapminder)
 gapminder <- gapminder
 ```
 
-*(2) En ese mismo dataframe con solamente las observaciones de América y Oceanía seleccionar solamente tres variables: country y lifeExp*
+*(2) En ese mismo dataframe con solamente las observaciones de América y Oceanía seleccionar solamente dos variables: country y lifeExp*
 
 *(3) En ese mismo dataframe, crear una nueva variable que divida la expectativa de vida en 3 categorías: "Alta" (mayor o igual a 75 años); "Media" (mayor o igual a 65 y menor a 75 y "Baja" (menor a 65 años)*
 

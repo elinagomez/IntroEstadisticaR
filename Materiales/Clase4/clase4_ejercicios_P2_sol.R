@@ -2,8 +2,8 @@
 ## ***************************************************************************
 ##  Módulo 2: Manipulación de datos          
 ##  Solución de ejercicio                                          
-##  Medición y diseño de investigación
-##  Martín Opertti y Fabricio Carneiro - 2023                                         
+##  UMAD
+##  2023                                         
 ## ***************************************************************************
 
 ## Trabajaremos con una base de datos con datos económicos y sociales de 

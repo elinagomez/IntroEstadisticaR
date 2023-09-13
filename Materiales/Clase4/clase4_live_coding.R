@@ -13,7 +13,7 @@
 ## 1.1. Cargar base de datos ----
 data <- haven::read_stata("data/ej_encuesta.dta")
 head(data, 5) # ver el tipo de variables
-
+save(data, file="data/base.Rdata")
 # 1.2. Pasar las variables a factores ----
 data %>% 
   dplyr::mutate(P1 = haven::as_factor(P1),
