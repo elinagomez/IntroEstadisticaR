@@ -77,11 +77,14 @@ glimpse(gapminder)
 ##  2. Filtrar observaciones   ==============================================
 library(gapminder)
 
-data_gap <- gapminder
+d_gap <- gapminder
+
+
 
 ## Una de las transformaciones más frecuentes cuando manipulamos datos 
 # Tenemos datos de muchos años:
 table(d_gap$year)
+
 
 # Filtremos para con los datos a partir de 2007
 gapminder_07 <- filter(d_gap, year == 2007)
