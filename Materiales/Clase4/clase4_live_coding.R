@@ -212,6 +212,8 @@ d_gap <- gapminder
 d_gap <- mutate(d_gap, uruono = case_when(country == "Uruguay" ~ "Si",
                                           TRUE ~ "No"))
 
+glimpse(d_gap)
+
 table(d_gap$uruono)
 
 ## Con case_when() podemos establecer varias condiciones fácilmente

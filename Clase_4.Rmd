@@ -855,21 +855,6 @@ plot(data_gapminder$lifeExp, data_gapminder$gdpPercap,
 ]
 
 
----
-
-## Ejercicio
-
-.content-box-blue[
-*(1) Importar el archivo excel en la carpeta data llamado "datauru"*
-
-*(2) Explorar las variables y el tipo de cada variable con la función glimpse()*
-
-*(3) Calcular la media de una variable numérica*
-
-*(4) Crear una tabla de proporciones con la distribución de la variable partido*
-
-*(5) Crear un gráfico de dispersión con las variables inflación (eje de las x) y aprobación (eje de las y)*
-]
 
 ---
 ## Tablas simples
@@ -978,6 +963,22 @@ d_gap %>%
 ```
 ]
 
+
+---
+
+## Ejercicio
+
+.content-box-blue[
+*(1) Importar el archivo excel en la carpeta data llamado "datauru"*
+
+*(2) Explorar las variables y el tipo de cada variable con la función glimpse()*
+
+*(3) Calcular la media de una variable numérica*
+
+*(4) Crear una tabla de proporciones con la distribución de la variable partido*
+
+*(5) Crear un gráfico de dispersión con las variables inflación (eje de las x) y aprobación (eje de las y)*
+]
 
 
 ---
