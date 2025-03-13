@@ -52,167 +52,6 @@ use_extra_styles(
 ```
 
 
-# ¿Qué es y qué se puede hacer con R?  
-
----
-
-## R y R Studio
-
-.pull-left[
-
-- R es un software y un lenguaje de programación gratuito enfocado en el análisis estadístico y la visualización de datos.
-
-- R cuenta con gran potencia y flexibilidad, así como una númerosa -y creciente- comunidad de usuarios tanto académicos como profesionales.
-
-.center[
-```{r, out.width = "150px"}
-knitr::include_graphics("ima/Rlogo.png")
-```
-]]
-
-.pull-right[
-- R Studio es un entorno de desarrollo integrado (IDE) . O en otras palabras... es una interfaz un poco (bastante) más amigable que usar R directamente.
-
-.center[
-```{r, out.width = "200px"}
-knitr::include_graphics("ima/rstudio.png")
-```
-]]
-
----
-
-## ¿Por qué usar R? 
-
-- Es un software libre y gratuito
---
-
-- Generar nuevas funciones es fácil, por lo que las está en constante desarrollo
---
-
-- Tiene muchos usuarios de diversas disciplinas lo que genera una comunidad (particularmente mediante foros) que es de gran utilidad para la resolución de problemas de código
---
-
-- Es uno de los programas más utilizados para técnicas innovadaras en estadística y visualización de datos 
---
-
-- Trabaja muy bien con otros programas/lenguajes (Excel, Latex, HTML, etc.)
---
-
-- Es cada vez más usado tanto en el ámbito académico como profesional
---
-
----
-class: inverse, center, middle
-
-# ¿Qué se puede hacer con R? 
-
----
-
-## ¿Qué se puede hacer con R?
-
-- Ingresar datos
---
-
-- Importar y exportar datos (de Excel, Stata, documento de texto, APIs, etc)
---
-
-- Manipular datos (recodificación, cambios de estructura)
---
-
-- Estadística descrpitiva e inferencial
---
-
-- Visualización de datos (gráficos de alta calidad)
---
-
-- Técnicas estadísticas y de visualización de datos innovadoras
---
-
-- Crear tus propias funciones y paquetes
---
-
-- Escribir artículos y presentaciones integrando código
---
-
-- Escribir libros
---
-
-- Webscrapping, trabajar con Big data y machine learning
---
-
-- Aplicaciones intercativas para visualización de datos (shiny apps)
---
-
-- Hasta jugar videojuegos!
-
----
-
-## Algunos ejemplos: visualización de datos
-.center[
-```{r, out.width = "750px"}
-knitr::include_graphics("ima/ima5.png")
-```
-]
----
-
-## Algunos ejemplos: visualización de datos
-.center[
-```{r, out.width = "750px"}
-knitr::include_graphics("ima/ima10.png")
-```
-]
----
-
-## Algunos ejemplos: visualización de datos
-.center[
-```{r, out.width = "750px"}
-knitr::include_graphics("ima/ima4.png")
-```
-]
----
-
-## Algunos ejemplos: visualización de datos
-.center[
-```{r, out.width = "450px"}
-knitr::include_graphics("ima/ima14.png")
-```
-]
----
-
-## Algunos ejemplos: visualización de datos
-.center[
-```{r, out.width = "600px"}
-knitr::include_graphics("ima/ani8.gif")
-```
-]
----
-
-## Algunos ejemplos: visualización de datos
-.center[
-```{r, out.width = "650px"}
-knitr::include_graphics("ima/ima8.jpg")
-```
-]
----
-
-
-## Aplicaciones (shiny apps), paquetes y presentaciones
-
-
-- [Visualizadores UMAD](https://umad.cienciassociales.edu.uy/sistema-de-consulta-personalizado/)
-
-- [Mirador DESCA](https://bancodedatos-fcs.shinyapps.io/Mirador-DESCA-app/) 
-
-- [OPUY](https://github.com/Nicolas-Schmidt/opuy) 
-
-- Esta misma presentación, ver [Xaringan](https://github.com/yihui/xaringan)
-
-- [r4ds](https://r4ds.had.co.nz/)
-
-
----
-class: inverse, center, middle
-
 # Estructura y objetivos del curso 
 
 
@@ -220,7 +59,7 @@ class: inverse, center, middle
 
 ## Aspectos generales
 
--  Docentes: Elina Gómez, Fabricio Carneiro, Nicolás Schmidt (UMAD)
+-  Docentes: Elina Gómez, Sharon Katzkowicz, Fabricio Carneiro, Nicolás Schmidt (UMAD)
 
 -  Créditos: 6 
 
@@ -385,6 +224,169 @@ knitr::include_graphics("ima/usermap.png")
 
 ```
 ]
+
+
+---
+class: inverse, center, middle
+
+# ¿Qué es y qué se puede hacer con R?  
+
+---
+
+## R y R Studio
+
+.pull-left[
+
+- R es un software y un lenguaje de programación gratuito enfocado en el análisis estadístico y la visualización de datos.
+
+- R cuenta con gran potencia y flexibilidad, así como una numerosa -y creciente- comunidad de usuarios tanto académicos como profesionales.
+
+.center[
+```{r, out.width = "150px"}
+knitr::include_graphics("ima/Rlogo.png")
+```
+]]
+
+.pull-right[
+- R Studio es un entorno de desarrollo integrado (IDE) . O en otras palabras... es una interfaz un poco (bastante) más amigable que usar R directamente.
+
+.center[
+```{r, out.width = "200px"}
+knitr::include_graphics("ima/rstudio.png")
+```
+]]
+
+---
+
+## ¿Por qué usar R? 
+
+- Es un software libre y gratuito
+--
+
+- Generar nuevas funciones es fácil, por lo que las está en constante desarrollo
+--
+
+- Tiene muchos usuarios de diversas disciplinas lo que genera una comunidad (particularmente mediante foros) que es de gran utilidad para la resolución de problemas de código
+--
+
+- Es uno de los programas más utilizados para técnicas innovadaras en estadística y visualización de datos 
+--
+
+- Trabaja muy bien con otros programas/lenguajes (Excel, Latex, HTML, etc.)
+--
+
+- Es cada vez más usado tanto en el ámbito académico como profesional
+--
+
+---
+class: inverse, center, middle
+
+# ¿Qué se puede hacer con R? 
+
+---
+
+## ¿Qué se puede hacer con R?
+
+- Ingresar datos
+--
+
+- Importar y exportar datos (de Excel, Stata, documento de texto, APIs, etc)
+--
+
+- Manipular datos (recodificación, cambios de estructura)
+--
+
+- Estadística descrpitiva e inferencial
+--
+
+- Visualización de datos (gráficos de alta calidad)
+--
+
+- Técnicas estadísticas y de visualización de datos innovadoras
+--
+
+- Crear tus propias funciones y paquetes
+--
+
+- Escribir artículos y presentaciones integrando código
+--
+
+- Escribir libros
+--
+
+- Webscrapping, trabajar con Big data y machine learning
+--
+
+- Aplicaciones intercativas para visualización de datos (shiny apps)
+--
+
+- Hasta jugar videojuegos!
+
+---
+
+## Algunos ejemplos: visualización de datos
+.center[
+```{r, out.width = "750px"}
+knitr::include_graphics("ima/ima5.png")
+```
+]
+---
+
+## Algunos ejemplos: visualización de datos
+.center[
+```{r, out.width = "750px"}
+knitr::include_graphics("ima/ima10.png")
+```
+]
+---
+
+## Algunos ejemplos: visualización de datos
+.center[
+```{r, out.width = "750px"}
+knitr::include_graphics("ima/ima4.png")
+```
+]
+---
+
+## Algunos ejemplos: visualización de datos
+.center[
+```{r, out.width = "450px"}
+knitr::include_graphics("ima/ima14.png")
+```
+]
+---
+
+## Algunos ejemplos: visualización de datos
+.center[
+```{r, out.width = "600px"}
+knitr::include_graphics("ima/ani8.gif")
+```
+]
+---
+
+## Algunos ejemplos: visualización de datos
+.center[
+```{r, out.width = "650px"}
+knitr::include_graphics("ima/ima8.jpg")
+```
+]
+---
+
+
+## Aplicaciones (shiny apps), paquetes y presentaciones
+
+
+- [Visualizadores UMAD](https://umad.cienciassociales.edu.uy/sistema-de-consulta-personalizado/)
+
+- [Mirador DESCA](https://bancodedatos-fcs.shinyapps.io/Mirador-DESCA-app/) 
+
+- [OPUY](https://github.com/Nicolas-Schmidt/opuy) 
+
+- Esta misma presentación, ver [Xaringan](https://github.com/yihui/xaringan)
+
+- [r4ds](https://r4ds.had.co.nz/)
+
+
 ---
 
 ## Ayuda  
@@ -585,7 +587,7 @@ class: inverse, center, middle
 
 - Esto es importante porque las funciones que podemos aplicar a nuestros datos dependen del objeto en el que los definimos.
 
-- El uso de objetos tiene muchos benificios como extraer parte de ellos para determinados usos, duplicarlos o realizar operaciones sin imprimir en la consola.
+- El uso de objetos tiene muchos beneficios como extraer parte de ellos para determinados usos, duplicarlos o realizar operaciones sin imprimir en la consola.
 
 ---
 
@@ -595,7 +597,7 @@ El tipo de un objeto refiere a cuál es el tipo de los datos dentro del objeto. 
  
 ```{r t1, echo = FALSE, results="hide"}
 Nombre <- c("integer", "double", "character", "logical")
-Tipos <- c("Númerico: valores enteros", "Númerico: valores reales", "Texto", "Lógico (TRUE or FALSE)")
+Tipos <- c("Numérico: valores enteros", "Numérico: valores reales", "Texto", "Lógico (TRUE or FALSE)")
 Ejemplo <- c(10, 10.5, "Diez", TRUE)
 tabla1 <- data.frame(cbind(Nombre, Tipos, Ejemplo))
 ```
@@ -673,7 +675,7 @@ R tiene funciones que nos permiten identificar la clase, el tipo, la estructura 
 
 ## Clases y tipos de objetos
 
-Todo lo que escribimos entre comillas se interpeta como texto, por más que sean números. 
+Todo lo que escribimos entre comillas se interpreta como texto, por más que sean números. 
 
 ```{r ej7_b, echo = TRUE}
   year_2 <- "2021"
@@ -699,7 +701,7 @@ obj_1 + 20 # Da error
 ---
 
 ## ¿Por qué importan los tipos y clases? 
-En cambio, si creamos el objeto de tipo númerico:
+En cambio, si creamos el objeto de tipo numérico:
 
 ```{r ej7b3, echo = TRUE}
 obj_1 <- 10
@@ -778,7 +780,7 @@ v3
 
 ## Operaciones con vectores
 
-También podemos realizar operaciones con los vectores númericos:
+También podemos realizar operaciones con los vectores numéricos:
 ```{r ej7b35c, echo = TRUE}
 ## Operaciones con vectores:
 v3
@@ -791,7 +793,7 @@ v3 + 2 # Se realiza la operación sobre cada elemento del vector
 
 ¿Qué pasa si unimos vectores de distinto tipo? 
 
-Si unimos un vector de tipo caracter con uno númerico, R convertirá todo el vector a caracter. Si unimos un vector númerico (double o integer) a lógico, R convertirá el vector en númerico (`TRUE = 1`, `FALSE = 0`)
+Si unimos un vector de tipo caracter con uno numérico, R convertirá todo el vector a caracter. Si unimos un vector numérico (double o integer) a lógico, R convertirá el vector en numérico (`TRUE = 1`, `FALSE = 0`)
 
 ```{r ej7b35d, echo = TRUE}
 ## Ejemplo de coerción automática:
