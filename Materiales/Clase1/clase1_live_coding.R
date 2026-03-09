@@ -115,17 +115,17 @@ str(mi_primer_vector)
 (v5 <- c(TRUE, TRUE, FALSE, TRUE)) # lógico
 
 
-## * 3.2. Coerción automática: ----
-(v6 <- c(v2, v4)) # Unir vector numérico con uno de caracteres
-class(v6)
-
-
-## * 3.3.  Indexación: ----
+## * 3.2.  Indexación: ----
 v2
 v2[1] # El primer elemento dentro del vector 
 
 # Nos sirve por ejemplo para extraer partes del vector:
 (v3 <- v2[1:3]) # Creo nuevo vector con los elementos del 1 al 3
+
+
+## * 3.3. Coerción automática: ----
+(v6 <- c(v2, v4)) # Unir vector numérico con uno de caracteres
+class(v6)
 
 
 

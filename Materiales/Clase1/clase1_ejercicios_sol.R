@@ -6,14 +6,14 @@
 
 
 ## 1. Crea un objeto con el año de tu nacimiento y suma tu edad
-nacimiento <- 1996
-nacimiento + 26
+nacimiento <- 1989
+nacimiento + 36
 
 ## 2. Borra el objeto
 rm(nacimiento)
 
 ## 3. Crea un vector con el apellido de los últimos 5 presidentes de tu país
-presidentes <- c("Batlle", "Vázquez", "Mujica", "Vázquez", "Lacalle Pou")
+presidentes <- c("Vázquez", "Mujica", "Vázquez", "Lacalle Pou", "Orsi")
 
 ## 4. Crea un vector los números enteros que van del 0 al 35 y otro con los 
 # números de 0 a 100  que son múltiplos de 5
@@ -25,10 +25,3 @@ class(presidentes) # El vector de los presidentes debe ser de tipo "character"
 class(numeros_35) # El vector de 0 a 35 debe ser numérico (integer o double)
 class(numeros_100) # El vector de 0 a 100 debe ser numérico (integer o double)
 rm(list=ls())
-
-
-
-
-
-
-

@@ -430,21 +430,28 @@ class: inverse, center, middle
 
 ---
 
+## Instalar R y RStudio 
+
+- Descargar R:
+  - [R para windows](https://cran.r-project.org/bin/windows/)
+  - [R para Mac](https://cran.r-project.org/bin/macosx/)
+  - [R para Linux](https://cran.r-project.org/bin/linux/)
+
+- [Instalar RStudio](http://www.rstudio.com/ide) y seguir los pasos sugeridos
+
+- Abrir RStudio 
+
+Pasos detallados en el siguiente [enlace](https://rstudio-education.github.io/hopr/starting.html)
+
+
+---
+
 ## Abrimos R Studio 
 .center[
 ```{r, out.width = "1000px"}
 knitr::include_graphics("ima/consola_standard_2.png")
 ```
 ]
----
-
-## Personalizar R Studio (opcional)
-.center[
-```{r, out.width = "1000px"}
-knitr::include_graphics("ima/consola_per_2.png")
-```
-]
-
 ---
 
 ## R Studio
@@ -456,6 +463,15 @@ knitr::include_graphics("ima/consola_per_2.png")
 - .bold[Environment (ambiente):] Muestra todos los objetos que creaste en cada sesión.
 
 - .bold[Gráficos (y más):] Imprime los gráficos. En el mismo panel figuran otras pestañas como "Help" que sirve para buscar ayuda.
+
+---
+
+## Personalizar R Studio (opcional)
+.center[
+```{r, out.width = "1000px"}
+knitr::include_graphics("ima/consola_per_2.png")
+```
+]
 
 ---
 
@@ -476,7 +492,7 @@ knitr::include_graphics("ima/consola_per_2.png")
 ## Workspace
 - R nos ofrece guardar el ambiente (objetos, funciones, datos, etc.) luego de terminada cada sesión (lo que llama workspace). Si lo guardamos, la próxima vez que abramos ese script, nos encontraremos todo como lo dejamos (existirán los mismos objetos, funciones y datos). 
 
-- Lo recomendado es NO guardar el workspace, y guardar solamente el Script. De esta forma, cuando retomemos nuestro análisis en una nueva sesión de R, podemos correrlo y chequear que efectivamente genere los que querramos.
+- Lo recomendado es NO guardar el workspace, y guardar solamente el Script. De esta forma, cuando retomemos nuestro análisis en una nueva sesión de R, podemos correrlo y chequear que efectivamente genere lo que querramos.
 
 - Pueden desactivar la pregunta en Tools - Global Options - General - desmarcando la opción "Save workspace into RData" y desmarcando "restore RData into workspace"
       
