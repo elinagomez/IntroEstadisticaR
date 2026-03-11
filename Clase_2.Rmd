@@ -52,15 +52,12 @@ use_extra_styles(
 ```
 
 
----
-class: inverse, center, middle
-
 # Dataframes 
 
 ---
 
 ## Dataframes
-- Un dataframe o marco de datos (es lo que nos solemos referir como "base de datos"). 
+- Un dataframe o marco de datos es lo que nos solemos referir como "base de datos". 
 
 - Es por lejos la estructura más usada y útil para almacenar y analizar datos
 
@@ -147,7 +144,7 @@ encuesta[1, -3] # Valor de fila 1 y las columnas 1 y 2
 ---
 
 ## Dataframes 
-Una segunda manera para referirnos a datos dentro un dataframe es el usando el símbolo `$` . Es la manera más utilizada para refernirnos a una columna de un dataframe, y es muy sencillo de utilizar.  
+Una segunda manera para referirnos a datos dentro un dataframe es usando el símbolo `$` . Es la manera más utilizada para refernirnos a una columna de un dataframe, y es muy sencillo de utilizar.  
 
 .codefont[
 ```{r ej8_2, echo = TRUE, error=TRUE}
@@ -181,13 +178,13 @@ class: inverse, center, middle
 
 ## Funciones 
 
-- Una función es una serie de instrucciones para realizar una tarea específica. La función suele necesitar un imput (generalmente datos) y suele devolver un output (generalmente datos luego de cierta regla)
+- Una función es una serie de instrucciones para realizar una tarea específica. La función suele necesitar un input (generalmente datos) y suele devolver un output (generalmente datos luego de cierta regla)
 
 - Los objetos .bold[son] cosas, las funciones .bold[hacen] cosas
 
 - Por ejemplo, en el caso anterior, usamos la función `mean()` para calcular la media de la variable "edad" del dataframe "encuesta"
 
-- Usar una función en sencillo: escribimos el nombre de la función, seguido de un paréntesis y dentro los datos a los que le queremos aplicar la función. Pueden ser objetos o directamente valores. Ej. `mean(c(10,20,30))` o `mean(objeto)`
+- Usar una función es sencillo: escribimos el nombre de la función, seguido de un paréntesis y dentro los datos a los que le queremos aplicar la función. Pueden ser objetos o directamente valores. Ej. `mean(c(10,20,30))` o `mean(objeto)`
 
 - Dentro de la función se especifican los argumentos, que pueden ser dividos en dos tipos. El primero son los datos a los que se le aplica la función y el resto detalles de cómo se computa la función.
 
@@ -410,7 +407,7 @@ Como este paso lo voy a repetir muchas veces, creo una función que llamo `calc_
 ```{r ej9bb2_i, echo = TRUE}
 calc_vacas <- function(x, y){ 
   vacas_pc <- (x / 1000) / y   # Calculo la proporción de x / 1000 sobre y
-  vacas_pc_1 <- round(vacas_pc, digits = 2) # Redondeo
+  vacas_pc_1 <- round(vacas_pc, digits = 1) # Redondeo
   vacas_pc_2 <- paste(vacas_pc_1, "per", sep = " ")
  return(vacas_pc_2)
 }
@@ -446,7 +443,7 @@ data_2$vacas_pc <- calc_vacas(x = data_2$vacas, y = data_2$humanos)
 ---
 
 ## Errores y advertencias
-- Cuando utilizamos funciones podemos encontrarnos con errores (errors) y advertencias (warnings). La principal diferencia entre ellas es que el error implica que la función no se pudo aplicar, mientras que en la advertencia la función fue aplicada pero que algo no funcionó como esperado. También es posible ver mensajes (messages) que simplemente informan algo sobre la función
+- Cuando utilizamos funciones podemos encontrarnos con errores (errors) y advertencias (warnings). La principal diferencia entre ellas es que el error implica que la función no se pudo aplicar, mientras que en la advertencia la función fue aplicada pero que algo no funcionó como era esperado. También es posible ver mensajes (messages) que simplemente informan algo sobre la función
 
 ```{r ej9bb2_m, echo = TRUE, error=TRUE}
 vector_ej <- rnorm(n = 10, mean = 10, sd = 5) # Creo valores aleatorios
@@ -542,7 +539,7 @@ library(dplyr) # Ejemplo
 ---
 
 ## Paquetes
-En ocasiones los paquetes tienen funciones que se llaman igual, lo que puede llevar a errores. En estos casos -una vez instalado el paquete- podemos usar una función sin cargar el paquete de la siguiente manera:
+A su vez, una vez instalado un paquete, podemos usar una función específica sin cargar todo el paquete de la siguiente manera:
 
 .codefont[
 ```{r ej10_b, echo = TRUE,  results="hide", error=TRUE}
@@ -553,7 +550,7 @@ df_2 <- data.frame(col_a = c(1, 2, 3),
                    col_c = c(-2, 1, 6))
 
 # Uso la función rbind.fill() que a diferencia de rbind() del Base, 
-# permite unir datafranes con columnas que no matchean de forma exacta,
+# permite unir dataframes con columnas que no matchean de forma exacta,
 # agregando NAs
 
 # No cargo todo el paquete plyr sino que llamo la función específica usando ::
@@ -570,9 +567,9 @@ class: inverse, center, middle
 ## Operadores aritméticos 
 
 ```{r ej11, echo = FALSE}
-tabla2 <- data.frame(Operador=c("+", "-", "*", "%", "^"),
+tabla2 <- data.frame(Operador=c("+", "-", "*", "/", "^"),
                      Descripcion=c("Suma", "Resta", "Multiplicación", "División", "Potencia"),
-                     Ejemplo=c("2+2", "2-2", "2*2", "2%2", "2^3"),
+                     Ejemplo=c("2+2", "2-2", "2*2", "2/2", "2^3"),
                      Resultado=c("4", "0", "4", "1", "8"))
 tabla2 %>%
   kbl() %>%

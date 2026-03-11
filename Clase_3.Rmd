@@ -108,7 +108,7 @@ desempleo_uru <- read_excel("micompu/micarpeta/data/desempleo.xlsx")
 ## Proyectos de R (.Rproj) 
 <ol>
 <li> Creen una carpeta para guardar el material del curso 
-<li> Descarga de la webasignatura las carpetas "Data" y las carpetas "scripts" de los días 1 y 2. Pegalas en la carpeta del punto 1 (guarda todos los scripts dentro de la misma carpeta)
+<li> Descarga del EVA del curso las carpetas "Data" y las carpetas "scripts" de los días 1 y 2. Pegalas en la carpeta del punto 1 (guarda todos los scripts dentro de la misma carpeta)
 <li> Crea además dos carpetas más dentro de tu carpeta: "graficos" y "resultados"
 <li> Abran RStudio y desde ahí creen un `.Rproj`, desde existing directory, seleccionando la carpeta del punto 1
 </ol>
@@ -155,11 +155,20 @@ class: inverse, center, middle
 library(readxl)
 library(tidyverse)
 library(data.table)
+```
+---
+## Ejercicio
+
+.content-box-blue[
+*Supongamos que tengo estos datos:*
+]
+
+```{r ej2b, echo = FALSE, results='hide'}
 datauru <- read_excel("data/datauru.xlsx")
 data <- select(datauru, year, gdp_lcu, inflation, unemployment, presidente)
 ```
 
-```{r ej2b, echo = TRUE}
+```{r ej2c, echo = TRUE}
 data
 ```
 ---
@@ -171,7 +180,7 @@ data
 ]
 
 .codefont[
-```{r ej2c, echo = TRUE, eval = FALSE}
+```{r ej2d, echo = TRUE, eval = FALSE}
 as.data.frame(t(sapply(X = split(
   x = data[which(data$presidente %in% c("Vázquez", "Sanguinetti")),
            which(colnames(data) %in% c("gdp_lcu", "inflation"))],
@@ -188,7 +197,7 @@ as.data.frame(t(sapply(X = split(
 *¿Qué quiero hacer con el código debajo?*
 ]
 
-```{r ej2e, echo = TRUE, eval = FALSE}
+```{r ej2f, echo = TRUE, eval = FALSE}
 data_dt <- data
 
 setDT(data_dt)
@@ -205,7 +214,7 @@ data_dt[presidente %in% c("Vázquez", "Sanguinetti"),
 *¿Qué quiero hacer con el código debajo?*
 ]
 
-```{r ej2d, echo = TRUE, eval = FALSE}
+```{r ej2g, echo = TRUE, eval = FALSE}
 data %>%
   filter(presidente %in% c("Vázquez", "Sanguinetti")) %>%
   select(presidente, gdp_lcu, inflation) %>%
@@ -217,7 +226,7 @@ data %>%
 ---
 ## R Base
 
-```{r ej2f, echo = TRUE}
+```{r ej2h, echo = TRUE}
 as.data.frame(t(sapply(X = split(
   x = data[which(data$presidente %in% c("Vázquez", "Sanguinetti")),
            which(colnames(data) %in% c("gdp_lcu", "inflation"))],
@@ -229,7 +238,7 @@ as.data.frame(t(sapply(X = split(
 ---
 ## Data.table
 
-```{r ej2g, echo = TRUE}
+```{r ej2i, echo = TRUE}
 data_dt <- data
 setDT(data_dt)
 data_dt[presidente %in% c("Vázquez", "Sanguinetti"),
@@ -240,7 +249,7 @@ data_dt[presidente %in% c("Vázquez", "Sanguinetti"),
 ---
 ## Tidyverse
 
-```{r ej2h, echo = TRUE}
+```{r ej2j, echo = TRUE}
 data %>%
   filter(presidente %in% c("Vázquez", "Sanguinetti")) %>%
   select(presidente, gdp_lcu, inflation) %>%
@@ -512,13 +521,6 @@ write_sas(data_gapminder, "resultados/gapminder.sas")
 
 - Por ejemplo, supongamos que queremos leer los datos de una encuesta con dos variables, guardada en formato Stata (`.dta`), con el paquete `haven`.
 
-<!-- .codefont[ -->
-<!-- ```{r ej13bb, eval = FALSE} -->
-<!-- data <- haven::read_stata("data/ej_encuesta.dta") -->
-<!-- head(data, 5) -->
-<!-- ``` -->
-<!-- ] -->
-
 - Por defecto se leen como variables de tipo `double` (numérica) con etiquetas como atributos
 
 - Si queremos quedarnos directamente coon las etiquetas, podemos utilizar la funcion `as_factor`.
@@ -642,7 +644,7 @@ knitr::include_graphics("ima/tidy_data.png")
 
 ## Nombres de variables
 
-Muchas veces los usamos datos que no están documentados de manera uniforme o apropiada, por ejemplo, con nombres dispares y propensos a errores en las columnas.
+Muchas veces usamos datos que no están documentados de manera uniforme o apropiada, por ejemplo, con nombres dispares y propensos a errores en las columnas.
 
 [Janitor](https://garthtarr.github.io/meatR/janitor.html#catalog_of_janitor_functions) es un paquete orientado al estilo Tidyverse (aunque no pertenece) que facilita algunas funciones para limpiar y explorar datos. 
 
