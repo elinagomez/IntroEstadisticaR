@@ -61,11 +61,11 @@ year <- 2022
 # Creamos algunos objetos distintos
 nombre <- "Dos mil veintidos"
 
-# Uso la función typeof() para averiguar el tipo
+# Uso la función typeof()
 typeof(year) 
 typeof(nombre)
 
-# Uso la función class() para averiguar la clase
+# Uso la función class() 
 class(year) # es un vector de tipo numérico
 class(nombre) # es un vector de tipo character
 
@@ -126,6 +126,3 @@ v2[1] # El primer elemento dentro del vector
 ## * 3.3. Coerción automática: ----
 (v6 <- c(v2, v4)) # Unir vector numérico con uno de caracteres
 class(v6)
-
-
-

@@ -5,7 +5,7 @@
 #------------------------------------------------------------------------------#
 
 
-## 1. Crea un objeto con el año de tu nacimiento y suma tu edad
+## 1. Crea un objeto con el año de tu nacimiento y sumale tu edad
 nacimiento <- 1989
 nacimiento + 36
 
@@ -15,7 +15,7 @@ rm(nacimiento)
 ## 3. Crea un vector con el apellido de los últimos 5 presidentes de tu país
 presidentes <- c("Vázquez", "Mujica", "Vázquez", "Lacalle Pou", "Orsi")
 
-## 4. Crea un vector los números enteros que van del 0 al 35 y otro con los 
+## 4. Crea un vector con los números enteros que van del 0 al 35 y otro con los 
 # números de 0 a 100  que son múltiplos de 5
 numeros_35 <- 0:35
 numeros_100 <- seq(0, 100, 5)

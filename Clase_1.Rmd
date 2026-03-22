@@ -611,11 +611,11 @@ class: inverse, center, middle
 
 El tipo de un objeto refiere a cuál es el tipo de los datos dentro del objeto. Los tipos más comunes son:
  
-```{r t1, echo = FALSE, results="hide"}
+```{r t1, echo = FALSE, results="hide", warning=FALSE}
 Nombre <- c("integer", "double", "character", "logical")
 Tipos <- c("Numérico: valores enteros", "Numérico: valores reales", "Texto", "Lógico (TRUE or FALSE)")
 Ejemplo <- c(10, 10.5, "Diez", TRUE)
-tabla1 <- data.frame(cbind(Nombre, Tipos, Ejemplo))
+tabla1 <- data.frame(Nombre, Tipos, Ejemplo)
 ```
  
 ```{r t1_c, echo = FALSE}
@@ -678,11 +678,11 @@ R tiene funciones que nos permiten identificar la clase, el tipo, la estructura 
   year <- 2021
   nombre <- "Dos mil veintiuno"
   
-  # Uso la función class para averiguar la clase de objeto
+  # Uso la función class 
   class(year) 
   class(nombre)
   
-  # Uso la función typeof para averiguar el tipo de la data del objeto
+  # Uso la función typeof
   typeof(nombre)
   
 ```
