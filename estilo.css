@@ -71,3 +71,7 @@ a, a > code {
 .content-box-yellow .remark-inline-code { 
   background: none;
 }
+.remark-inline-code {
+  color: #1B4F72 !important;
+  background: transparent !important;
+}

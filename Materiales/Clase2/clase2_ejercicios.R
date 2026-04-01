@@ -40,7 +40,7 @@ paises_eco
 
 ## 8. Por último, instala el paquete "dplyr", cargalo y usa la función "filter" para filtrar 
 # "paises_eco" de modo que   solo queden los países de América Latina. Utiliza help(filter) para 
-# entender como usar la función.Cuidado que el paquete "stats" también tiene una función "filter",
+# entender como usar la función. Cuidado que el paquete "stats" también tiene una función "filter",
 # por lo que cuando uses help(filter), selecciona la función del paquete "dplyr". 
 # También puedes buscar directamente en un navegador
 

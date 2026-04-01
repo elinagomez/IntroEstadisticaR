@@ -181,12 +181,13 @@ data
 
 .codefont[
 ```{r ej2d, echo = TRUE, eval = FALSE}
-as.data.frame(t(sapply(X = split(
-  x = data[which(data$presidente %in% c("Vázquez", "Sanguinetti")),
-           which(colnames(data) %in% c("gdp_lcu", "inflation"))],
-  f = data$presidente[which(data$presidente %in% c("Vázquez", "Sanguinetti"))],
-  drop = TRUE),
-  FUN = function(x) {apply(x, 2, mean)})))
+aggregate(
+  data[data$presidente %in% c("Vázquez", "Sanguinetti"),
+       c("gdp_lcu", "inflation")],
+  by = list(presidente = data$presidente[data$presidente %in% c("Vázquez", "Sanguinetti")]),
+  FUN = mean,
+  na.rm = TRUE
+)
 ```
 ]
 
@@ -227,12 +228,14 @@ data %>%
 ## R Base
 
 ```{r ej2h, echo = TRUE}
-as.data.frame(t(sapply(X = split(
-  x = data[which(data$presidente %in% c("Vázquez", "Sanguinetti")),
-           which(colnames(data) %in% c("gdp_lcu", "inflation"))],
-  f = data$presidente[which(data$presidente %in% c("Vázquez", "Sanguinetti"))],
-  drop = TRUE),
-  FUN = function(x) {apply(x, 2, mean)})))
+aggregate(
+  data[data$presidente %in% c("Vázquez", "Sanguinetti"),
+       c("gdp_lcu", "inflation")],
+  by = list(presidente = data$presidente[data$presidente %in% c("Vázquez", "Sanguinetti")]),
+  FUN = mean,
+  na.rm = TRUE
+)
+
 ```
 
 ---
@@ -310,8 +313,6 @@ Tidyverse cuenta con varios paquetes que sirven para distintos tipos de tareas e
  # install.packages("tidyverse")
 library(tidyverse)
 
-# install.packages("dplyr")
-library(dplyr)
 ```
 ]
 
@@ -377,7 +378,10 @@ class: inverse, center, middle
 
 - Normalmente cuando trabajamos con datos solemos utilizar datos ya creados guardados en los formatos de otros programas (ej. Excel, Stata, SPSS) 
 
-- Existen varios paquetes que permiten importar y exportar datos desde distintos formatos. Algunos de los más utilizados son [readr](https://readr.tidyverse.org/), [haven](https://haven.tidyverse.org/), [readxl](https://readxl.tidyverse.org/) y [utils](https://www.rdocumentation.org/packages/utils/versions/3.6.2)
+- Existen varios paquetes que permiten importar y exportar datos desde distintos formatos. Algunos de los más utilizados son
+  - [readr](https://readr.tidyverse.org/) para archivos csv 
+  - [haven](https://haven.tidyverse.org/) para SPSS; STATA 
+  - [readxl](https://readxl.tidyverse.org/) para excel 
 
 ---
 
@@ -515,66 +519,6 @@ write_sas(data_gapminder, "resultados/gapminder.sas")
 
 ---
 
-## Etiquetas cuando importamos datos
-
-- Cuando importamos datos que tienen etiquetas (por ejemplo de formatos como Stata o SPSS) debemos tener cuidado con cómo manejar estas etiquetas
-
-- Por ejemplo, supongamos que queremos leer los datos de una encuesta con dos variables, guardada en formato Stata (`.dta`), con el paquete `haven`.
-
-- Por defecto se leen como variables de tipo `double` (numérica) con etiquetas como atributos
-
-- Si queremos quedarnos directamente coon las etiquetas, podemos utilizar la funcion `as_factor`.
----
-
-## Importar y exportar datos: factores
-
-- Otro tipo de variables en R son los factores (factors), utilizados para representar data categórica. Estos suelen confundirse con las variables de caracteres pero tienen algunas diferencias. 
-
-- Normalmente los factores son utilizados para las variables de caracteres con un número de valores posibles fijo y cierto orden (opcional)
-
-- A R le gusta transformar las variables de caracteres en factores al importarlas (si usamos R Base particularmente).
-
-- El paquete [forcats](https://forcats.tidyverse.org/) (dentro del Tidyverse) ayuda a manejar variables de caracteres y factores:
-    - `fct_relevel()` cambia manualmente el orden de los niveles
-    - `fct_reoder()` cambia el orden de los niveles de acuerdo a otra variable
-    - `fct_infreq()` reordena un factor por la frecuencia de sus valores 
-    - `fct_lump()` collapsa los valores menos frecuentes en otra categoría "other". Es muy útil para preparar datos para tablas y gráficos
----
-
-## Importar y exportar datos: factores 
-
-.codefontchico[
-```{r ej13, echo = TRUE}
-# Podemos chequear y coercionar factores
-data_gapminder <- gapminder
-is.factor(data_gapminder$continent) # Chequeo si es factor
-levels(data_gapminder$continent) # Chequeo los niveles
-# Transformo a caracter
-data_gapminder$continent <- as.character(data_gapminder$continent) 
-class(data_gapminder$continent)
-# De vuelta a factor
-data_gapminder$continent <- as.factor(data_gapminder$continent)
-class(data_gapminder$continent)
-```
-]
-
----
-
-## Importar y exportar datos: factores 
-
-.codefont[
-```{r ej14, echo = TRUE}
-# Para crear un factor usamos la función factor()
-paises_mercosur <- factor(c("Argentina", "Brasil", "Paraguay", "Uruguay"))
-table(paises_mercosur)
-# La función fct_relevel() nos permite reordenar los niveles del factor
-paises_mercosur <- fct_relevel(paises_mercosur, "Uruguay")
-table(paises_mercosur)
-```
-]
-
----
-
 ## Ejercicio
 
 .content-box-blue[
@@ -582,87 +526,4 @@ table(paises_mercosur)
 
 *(2) Leer la segunda hoja del archivo*
 ]
-
----
-class: inverse, center, middle
-
-# Dataframes 
-
----
-
-## Dataframes: tibbles
-- La mayoría de los análisis de datos convencionales contienen dataframes. Cuando usamos los paquetes del tidyverse, generalmente trabajamos con "tibbles", que es muy similar a un dataframe pero con pequeños cambios. 
-
-- Una de las principales diferencias es la forma en que se imprimen los datos.
-
-- La mayoría de las funciones del Tidyverse devuelven un tibble.
-
-.codefont[
-```{r ej15, echo = TRUE}
-data_gapminder <- (gapminder)
-class(data_gapminder) # Ya es un tibble 
-data_gapminder <- as.data.frame(data_gapminder)
-class(data_gapminder) # Ahora solamente dataframe
-```
-]
-
----
-
-## Dataframes: imprimir dataframe 
-
-.codefont[
-```{r ej15b, echo = TRUE}
-print(data_gapminder)
-```
-]
----
-
-## Dataframes: imprimir tibble 
-
-.codefont[
-```{r ej16, echo = TRUE}
-data_gapminder <- as_tibble(data_gapminder) # Pasamos nuevamente a tibble
-class(data_gapminder)
-print(data_gapminder)
-```
-]
-
----
-
-## Tidy dataset
-- Hay muchas formas de estructurar un conjunto de datos. El enfoque tidy sugiere que cada variable sea una columna y cada observación sea una fila, por lo que cada valor tiene su propia celda:
-
-.center[
-```{r ej17, out.width = "1000px"}
-knitr::include_graphics("ima/tidy_data.png")
-```
-]
-
-.right[[Wichkham & Grolemund (2018)](https://r4ds.had.co.nz/tidy-data.html)]
-
----
-
-## Nombres de variables
-
-Muchas veces usamos datos que no están documentados de manera uniforme o apropiada, por ejemplo, con nombres dispares y propensos a errores en las columnas.
-
-[Janitor](https://garthtarr.github.io/meatR/janitor.html#catalog_of_janitor_functions) es un paquete orientado al estilo Tidyverse (aunque no pertenece) que facilita algunas funciones para limpiar y explorar datos. 
-
-```{r ej17_a, results='hide', echo=FALSE}
-ejemplo <- data.frame(COLORES = c("Verde", "Rojo", "Azul"),
-                      NombresCompletos = c("María S.", "Juan F.", "Pedro A."),
-                      edad_NUMERICA = c(32, 23., 24))
-```
-
-.codefont[
-```{r ej17_b, warning=FALSE, message=FALSE, echo = TRUE}
-ejemplo
-
-library(janitor)
-
-ejemplo_clean <- clean_names(ejemplo)
-ejemplo_clean
-```
-]
-
 

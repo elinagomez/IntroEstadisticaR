@@ -55,150 +55,7 @@ use_extra_styles(
 
 class: inverse, center, middle
 
-# Importar y exportar datos
-
----
-
-## Importar datos
-- Hasta ahora trabajamos principalmente con datos ingresados manualmente con las funciones `c()` y `data.frame()`
-
-- Normalmente cuando trabajamos con datos solemos utilizar datos ya creados guardados en los formatos de otros programas (ej. Excel, Stata, SPSS) 
-
-- Existen varios paquetes que permiten importar y exportar datos desde distintos formatos. Algunos de los más utilizados son [readr](https://readr.tidyverse.org/), [haven](https://haven.tidyverse.org/), [readxl](https://readxl.tidyverse.org/) y [utils](https://www.rdocumentation.org/packages/utils/versions/3.6.2)
-
----
-
-## Importar datos 
-Distintas funciones nos sirven para importar datos a R desde distintos formatos. Veamos algunos ejemplos:
-
-.codefont[
-```{r ej8, echo = TRUE, results="hide", message=FALSE, warning=FALSE}
-# Con la función read_csv() del paquete readr importamos archivos .csv
-library(tidyverse)
-gapminder_csv <- read_csv("data/gapminder.csv")
-
-# Con la función read_excel() del paquete readxl importamos archivos excel
-library(readxl)
-gapminder_excel <- read_excel("data/gapminder.xlsx")
-
-```
-]
-
-.codefont[
-```{r ej8_b, echo = TRUE}
-# Vemos que los dataframes son iguales, tienen la mismas filas y columnas
-dim(gapminder_csv)
-dim(gapminder_excel)
-```
-]
----
-
-## Importar datos
-Algunos paquetes incluyen datos, por ejemplo, gapminder. En la documentación del paquete se encuentra el nombre de los datos. Con una simple asignación los podemos cargar 
-```{r ej9, echo = TRUE, message=FALSE, warning=FALSE}
-library(gapminder)
-
-data_gapminder <- gapminder
-head(data_gapminder)
-```
-
----
-
-## Importar datos
-También es posible importar datos guardados en los formatos de otros softwares estadísticos como SPSS o Stata. Para esto usaremos el paquete haven.
-
-.codefont[
-```{r ej10, echo = TRUE}
-library(haven)
-
-# SPSS
-gapminder_spss <- read_spss("data/gapminder.sav") 
-
-# STATA
-gapminder_stata <- read_stata("data/gapminder.dta") 
-```
-]
-
-O podríamos llamar a la función y paquete dado que generalmente solo utilizamos una función de los paquetes que cargan datos (depende del caso obviamente)
-
-.codefont[
-```{r ej10bb, echo = TRUE}
-# SPSS
-gapminder_spss <- haven::read_spss("data/gapminder.sav") 
-
-# STATA
-gapminder_stata <- haven::read_stata("data/gapminder.dta") 
-```
-]
-
----
-
-## Importar datos 
-R también cuenta con sus propios formatos de almacenamiento de datos (`.rds` y `.Rdata` o `.rda`). Este enfoque es poco práctico si queremos usar los datos almacenados en otro programa, pero muy útil si solamente usaremos R dado que mantiene la información tal cual estaba en R (por ej. tipos de variables o atributos):
-
-.codefont[
-```{r ej11, echo = TRUE}
-# Para esto no necesitamos cargar paquetes. 
-# Guardar un objeto como .rds:
-saveRDS(object = data_gapminder,
-        file = "resultados/data_gapminder.rds") 
-
- # Leemos un archivo .rds
-miobjeto_rds <- readRDS(file = "resultados/data_gapminder.rds")
-
-# Con .rda se pueden guardar varios objetos al mismo tiempo!
-# Exportamos un archivo .Rdata
-save(data_gapminder, miobjeto_rds,
-     file = "resultados/dos_dataframes.Rdata") 
-
- # Importamos un archivo .Rdata
-load("resultados/dos_dataframes.Rdata")
-```
-]
-
----
-
-## Exportar datos 
-- También podemos guardar archivos desde R en otros formatos. 
-- Con [readr](https://readr.tidyverse.org/) podemos exportar archivos en formato .csv 
-- Con [writexl](https://cran.r-project.org/web/packages/writexl/writexl.pdf) podemos exportar directamente un excel.
-- Con [haven](https://www.rdocumentation.org/packages/haven/versions/2.3.1) podemos exportar achivos en formato .dta (Stata) y .sav (SPSS)
-
-.codefont[
-```{r ej12, echo= FALSE}
-# Guardar .csv
-library(gapminder)
-data_gapminder <- gapminder
-write_excel_csv(data_gapminder, "resultados/gapminder.csv")
-
-# Guardar excel
-library(writexl)
-write_xlsx(data_gapminder, "resultados/gapminder.xlsx")
-
-# Guardar .dta (Stata)
-library(haven)
-write_dta(data_gapminder, "resultados/gapminder.dta")
-
-# Guardar .sav (SPSS)
-write_sav(data_gapminder, "resultados/gapminder.sav")
-
-# Guardar .sas (SAS)
-write_sas(data_gapminder, "resultados/gapminder.sas")
-```
-]
----
-
-## Importar y exportar datos
-
-.bold[Argumentos a tener en cuenta:]
-
-- .bold[Nombre de columnas:] a veces debemos especificar si queremos que la primera fila de nuestros datos sean el nombre de las variables
-
-- .bold[Nombre de filas:] de igual manera, a veces podemos especificar si queremos que la primera columna sea el nombre de las filas (sirve para identificadores de caso por ej.)
-
-- .bold[Etiquetas de variables:] cuando los datos que queremos importar tienen etiquetas (pasa mucho en encuestas) podemos cargarlas como etiquetas o cargar solamente la etiqueta como cadena o factores. 
-
-- .bold[Append:] algunas funciones permiten agregar filas debajo de un archivo (esto es muy útil para ir actualizando bases de datos)
+# Factores y etiquetas 
 
 ---
 
@@ -217,14 +74,11 @@ head(data, 5)
 
 - Por defecto se leen como variables de tipo `double` (numérica) con etiquetas como atributos
 
-- Si queremos quedarnos directamente coon las etiquetas, podemos utilizar la funcion `as_factor`.
-
+- Si queremos quedarnos directamente con las etiquetas, podemos utilizar la funcion `as_factor`.
 
 ---
 
-
-
-## Importar y exportar datos: factores
+## Factores
 
 - Otro tipo de variables en R son los factores (factors), utilizados para representar data categórica. Estos suelen confundirse con las variables de caracteres pero tienen algunas diferencias. 
 
@@ -237,6 +91,7 @@ head(data, 5)
     - `fct_reoder()` cambia el orden de los niveles de acuerdo a otra variable
     - `fct_infreq()` reordena un factor por la frecuencia de sus valores 
     - `fct_lump()` collapsa los valores menos frecuentes en otra categoría "other". Es muy útil para preparar datos para tablas y gráficos
+    
 ---
 
 
@@ -254,12 +109,9 @@ Si convertirmos los datos a factor usando `haven::as_factor()` (no confudir con 
 ``` 
 ]
 
-
-
 ---
 
-
-## Importar y exportar datos: factores 
+## Factores 
 
 .codefontchico[
 ```{r ej13, echo = TRUE}
@@ -278,7 +130,7 @@ class(data_gapminder$continent)
 
 ---
 
-## Importar y exportar datos: factores 
+## Factores 
 
 .codefont[
 ```{r ej14, echo = TRUE}
@@ -292,20 +144,6 @@ table(paises_mercosur)
 ]
 
 ---
-
-## Ejercicio 1
-
-.content-box-blue[
-*(1) Cargar la primera hoja del archivo datauru_sheets en R*
-
-*(2) Cargar la segunda hoja del archivo datauru_sheets en R*
-
-*(3) Exportar la primera hoja como .Rdata y la segunda como .dta a la carpeta "resultados" dentro del directorio del proyecto*
-
-]
-
----
-
 
 class: inverse, center, middle
 
@@ -457,49 +295,6 @@ gapminder_07 <- filter(gapminder, year == 2007)
 table(gapminder_07$year)
 ```
 ]
-
----
-## Operadores aritméticos 
-
-```{r ejsdsd11, echo = FALSE}
-tabla2 <- data.frame(Operador=c("+", "-", "*", "/", "^"),
-                     Descripcion=c("Suma", "Resta", "Multiplicación", "División", "Potencia"),
-                     Ejemplo=c("2+2", "2-2", "2*2", "2/2", "2^3"),
-                     Resultado=c("4", "0", "4", "1", "8"))
-tabla2 %>%
-  kbl() %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), font_size = 20)
-
-```
-
----
-
-## Operadores relacionales 
-
-```{r ej11bsdsd, echo = FALSE}
-tabla3 <- data.frame(Operador=c("<", ">", "<=", ">=", "%in%", "==", "!="),
-                     Descripcion=c("Menor a", "Mayor a", "Menor o igual a", "Mayor o igual a",
-                                   "Está incluido dentro de","Igual a", "Distinto a"),
-                     Ejemplo=c("4 < 4", "6 > 2", "4 <= 4", "6 >= 2", "2 %in% c(0, 1, 2)","hola == hello", "hola != hello"),
-                     Resultado=c("FALSE", "TRUE", "TRUE", "TRUE", "TRUE", "FALSE", "TRUE"))
-tabla3 %>%
-  kbl() %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), font_size = 20)
-
-```
-
----
-
-## Operadores booleanos
-
-```{r ej11cssds, echo = FALSE}
-tabla4 <- data.frame(Operador=c("a & b ", "a | b", "!a", "isTrue(a)"),
-                     Prueba=c("a y b son verdaderos", "al menos una de a o b son verdaderas", "a no es verdadera", "a es verdadera"))
-tabla4 %>%
-  kbl() %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), font_size = 20)
-
-```
 
 ---
 ## Filtrar

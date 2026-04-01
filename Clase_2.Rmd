@@ -264,8 +264,8 @@ identical(x = media_fun, y = media_fun_x) # por especificación
 .codefont[
 ```{r ej9bb2_d, echo = TRUE}
 # Dataframe con el resultado de Uruguuay en los últimos 5 mundiales
-uru_mundial <- data.frame(year = c(2002, 2006, 2010, 2014, 2018),
-                          posicion = c(26, NA, 4, 12, 5))
+uru_mundial <- data.frame(year = c(2006, 2010, 2014, 2018, 2022),
+                          posicion = c(NA, 4, 12, 5, 18))
 # Veamos la posición promedio:
 mean(uru_mundial$posicion) 
 # Como tenemos un dato perdido, la función nos devuelve NA
@@ -281,7 +281,7 @@ mean(uru_mundial$posicion, na.rm = TRUE)
 
 - Es importante entender que la función `mean()` <b> por defecto </b> tiene el argumento `na.rm = FALSE`. De esta forma, si nosotros solamente le pasamos el argumento x, no quitará los datos perdidos. 
 
-- Leer la documentación de las funciones es fundamental, y sobretodo prestar atención a los argumentos por defecto.
+- Leer la documentación de las funciones es fundamental, y sobre todo prestar atención a los argumentos por defecto.
 
 ---
 
@@ -354,91 +354,11 @@ knitr::include_graphics("ima/function.png")
 
 .right[Fuente: Grolemund (2014)
 ]
----
-
-## Crear funciones
-
-Supongamos que tenemos varios dataframes con la cantidad de vacas (en miles) y población (en millones) para un puñado de países en 2017, y que queremos agregar una tercera columna que indique la cantidad de vacas per capita. Estos son los datos que queremos transformar:
-
-.codefont[
-```{r ej9bb2_f, echo = FALSE, results="hide"}
-data <- data.frame(pais = c("Uruguay", "Argentina", "Brasil", "Mexico"),
-                    humanos = c(3.4, 43.8, 209.5, 128.6),
-                    vacas = c(11800, 53500, 22600, 16500))
-
-data_2 <- data.frame(pais = c("Uruguay", "Nueva Zelanda", "Australia", "Japón"),
-                      humanos = c(3.4, 4.5, 43.8, 126.3),
-                      vacas = c(11800, 9900, 53500, 3800))
-```
-
-```{r ej9bb2_g, echo = TRUE}
-data
-data_2
-```
-]
 
 ---
+class: inverse, center, middle
 
-## Crear funciones
-
-.codefont[
-```{r ej9bb2_h, echo = TRUE}
-# Ahora quiero calcular la cantidad de vacas per capita.
-# Podría hacer:
-
-data$vacas_pc <- (data$vacas / 1000) / data$humanos 
-data
-
-# Ahora me gustaría tener una tabla un poco más prolija:
-# números redondeados y agrego "per"
-
-data$vacas_pc <- round(data$vacas_pc, digits = 1)
-data$vacas_pc <- paste(data$vacas_pc, "per", sep = " ")
-
-print(data)
-```
-]
-
----
-
-## Crear funciones
-Como este paso lo voy a repetir muchas veces, creo una función que llamo `calc_vacas()` que realice todos estos cambios:
-.codefont[
-```{r ej9bb2_i, echo = TRUE}
-calc_vacas <- function(x, y){ 
-  vacas_pc <- (x / 1000) / y   # Calculo la proporción de x / 1000 sobre y
-  vacas_pc_1 <- round(vacas_pc, digits = 1) # Redondeo
-  vacas_pc_2 <- paste(vacas_pc_1, "per", sep = " ")
- return(vacas_pc_2)
-}
-
-# Aplico la función a data_2 
-data_2$vacas_pc <- calc_vacas(x = data_2$vacas, y = data_2$humanos)
-data_2
-```
-]
-
----
-
-## Crear funciones
-
-Copiando y pegando código
-```{r ej9bb2_j, echo = TRUE}
-data$vacas_pc <- (data$vacas / 1000) / data$humanos
-data$vacas_pc <- round(data$vacas_pc, digits = 1)
-data$vacas_pc <- paste(data$vacas_pc, "per", sep = " ")
-
-data_2$vacas_pc <- (data_2$vacas / 1000) / data_2$humanos
-data_2$vacas_pc <- round(data_2$vacas_pc, digits = 1)
-data_2$vacas_pc <- paste(data_2$vacas_pc, "per", sep = " ")
-```
-
-Con una función
-```{r ej9bb2_l, echo = TRUE}
-data$vacas_pc <- calc_vacas(x = data$vacas, y = data$humanos)
-
-data_2$vacas_pc <- calc_vacas(x = data_2$vacas, y = data_2$humanos)
-```
+# Errores y advertencias
 
 ---
 
@@ -469,14 +389,14 @@ mean(vector_ej) # Aplico función para obtener la media
 
 ## Errores y advertencias 
 
-En el caso anterior, es sencillo entender porque la función no corrió. Sin embargo, muchas veces podemos no entender que es lo que salió mal y copiar y pegar el error en un buscador de internet es un buen primer paso.
+Muchas veces podemos no entender que es lo que salió mal y copiar y pegar el error en un buscador de internet es un buen primer paso.
 
 .codefontchico[
 ```{r ej9bb2_n, echo = TRUE, error=TRUE}
 vector_1 <- c("10", "35%", "35", "50") # Vector de caracteres que contiene números 
-vector_1
 vector_2 <- as.numeric(vector_1) # Transformo a vector númerico
 vector_2 # Los valores que además del número tenían (%) no pueden pasarse a númericos
+vector_1[is.na(vector_2)] # Veo qué valores del vector_1 quedaron como NA en vector_2
 vector_1 <- gsub("%", "", vector_1) # Quito los % del vector original 
 vector_1 # Sin valores perdidos
 vector_2 <- as.numeric(vector_1) # Transformo a vector númerico
@@ -506,7 +426,14 @@ class: inverse, center, middle
 - Los paquetes alojados en CRAN son testados antes de ser publicados. Por eso es recomendable tener cuidado con utilizar paquetes que no han sido publicados allí aún.
 --
 
-- Los paquetes normalmente están relacionados a alguna temática, por ejemplo existen paquetes específicos para manipulación de datos [dplyr](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf), visualización de datos [ggplot2](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf) o importar y exportar datos [readr](https://cran.r-project.org/web/packages/readr/readr.pdf). Dado que R es libre, cualquier persona puede crear y publicar un paquete (publicarlo en CRAN requiere ciertos procesos igualmente), esto facilita que haya paquetes muy específicos para ciertas tareas que pueden ser de gran utilidad. Por ejemplo, existen paquetes para  conectarse con la API de Twitter [rtweet](https://cran.r-project.org/web/packages/rtweet/rtweet.pdf), para utilizar los datos de [Gapminder](https://cran.csiro.au/web/packages/gapminder/gapminder.pdf) o para analizar datos electorales y de opinión pública en Uruguay [opuy](https://github.com/Nicolas-Schmidt/opuy/blob/master/man/figures/Manual_opuy.pdf)
+- Los paquetes normalmente están relacionados a alguna temática, por ejemplo:
+  - existen paquetes específicos para manipulación de datos [dplyr](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)
+  - visualización de datos [ggplot2](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf) 
+  - importar y exportar datos [readr](https://cran.r-project.org/web/packages/readr/readr.pdf). 
+- Paquetes específicos: 
+  -   conectarse con la API de Twitter [rtweet](https://cran.r-project.org/web/packages/rtweet/rtweet.pdf), 
+  - utilizar los datos de [Gapminder](https://cran.csiro.au/web/packages/gapminder/gapminder.pdf) 
+  -  analizar datos electorales y de opinión pública en Uruguay [opuy](https://github.com/Nicolas-Schmidt/opuy/blob/master/man/figures/Manual_opuy.pdf)
 
 ---
 

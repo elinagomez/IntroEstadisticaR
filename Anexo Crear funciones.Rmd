@@ -1,0 +1,158 @@
+---
+title: "Curso Introducción a la Estadística con R"
+subtitle: "____________"
+author: "Anexo: Crear funciones" 
+date: &nbsp <img src="ima/FCS_UMAD_4_RGB.png" align="center" height="300px" />
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "estilo.css"]
+    lib_dir: libs
+    self_contained: yes
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      incremental: true
+      df_print: kable  
+      smaller: true
+      widescreen: true
+      highlightLines: true
+
+---
+class: inverse, center, middle
+
+```{r setup, include=FALSE}
+library(xaringanthemer)
+library(kableExtra)
+library(xaringan)
+library(xaringanExtra)
+
+style_duo_accent(primary_color = "#8ed3f6",
+                 secondary_color = "#8ed3f6",
+                 text_font_family = "Droid Serif",
+                 text_font_url = "https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic",
+                 header_font_google = google_font("Yanone Kaffeesatz"),
+                 text_slide_number_color = "#000000")
+knitr::opts_chunk$set(echo = FALSE)
+options("kableExtra.html.bsTable" = T)
+
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+use_xaringan_extra(c("tile_view", "animate_css", "tachyons"))
+use_scribble()
+use_extra_styles(
+  hover_code_line = TRUE,         
+  mute_unhighlighted_code = TRUE
+  )  
+```
+
+
+# Crear funciones 
+
+---
+
+## Crear funciones 
+
+- R permite crear tus propias funciones con facilidad. 
+
+- Esto es muy útil para cuando queremos aplicar determinadas líneas de código a varios objetos distintos.
+
+.center[
+```{r, out.width = "700px"}
+knitr::include_graphics("ima/function.png")
+```
+]
+
+.right[Fuente: Grolemund (2014)
+]
+---
+
+## Crear funciones
+
+Supongamos que tenemos varios dataframes con la cantidad de vacas (en miles) y población (en millones) para un puñado de países en 2017, y que queremos agregar una tercera columna que indique la cantidad de vacas per capita. Estos son los datos que queremos transformar:
+
+.codefont[
+```{r ej9bb2_f, echo = FALSE, results="hide"}
+data <- data.frame(pais = c("Uruguay", "Argentina", "Brasil", "Mexico"),
+                    humanos = c(3.4, 43.8, 209.5, 128.6),
+                    vacas = c(11800, 53500, 22600, 16500))
+
+data_2 <- data.frame(pais = c("Uruguay", "Nueva Zelanda", "Australia", "Japón"),
+                      humanos = c(3.4, 4.5, 43.8, 126.3),
+                      vacas = c(11800, 9900, 53500, 3800))
+```
+
+```{r ej9bb2_g, echo = TRUE}
+data
+data_2
+```
+]
+
+---
+
+## Crear funciones
+
+.codefont[
+```{r ej9bb2_h, echo = TRUE}
+# Ahora quiero calcular la cantidad de vacas per capita.
+# Podría hacer:
+
+data$vacas_pc <- (data$vacas / 1000) / data$humanos 
+data
+
+# Ahora me gustaría tener una tabla un poco más prolija:
+# números redondeados y agrego "per"
+
+data$vacas_pc <- round(data$vacas_pc, digits = 1)
+data$vacas_pc <- paste(data$vacas_pc, "per", sep = " ")
+
+print(data)
+```
+]
+
+---
+
+## Crear funciones
+Como este paso lo voy a repetir muchas veces, creo una función que llamo `calc_vacas()` que realice todos estos cambios:
+.codefont[
+```{r ej9bb2_i, echo = TRUE}
+calc_vacas <- function(x, y){ 
+  vacas_pc <- (x / 1000) / y   # Calculo la proporción de x / 1000 sobre y
+  vacas_pc_1 <- round(vacas_pc, digits = 1) # Redondeo
+  vacas_pc_2 <- paste(vacas_pc_1, "per", sep = " ")
+ return(vacas_pc_2)
+}
+
+# Aplico la función a data_2 
+data_2$vacas_pc <- calc_vacas(x = data_2$vacas, y = data_2$humanos)
+data_2
+```
+]
+
+---
+
+## Crear funciones
+
+Copiando y pegando código
+```{r ej9bb2_j, echo = TRUE}
+data$vacas_pc <- (data$vacas / 1000) / data$humanos
+data$vacas_pc <- round(data$vacas_pc, digits = 1)
+data$vacas_pc <- paste(data$vacas_pc, "per", sep = " ")
+
+data_2$vacas_pc <- (data_2$vacas / 1000) / data_2$humanos
+data_2$vacas_pc <- round(data_2$vacas_pc, digits = 1)
+data_2$vacas_pc <- paste(data_2$vacas_pc, "per", sep = " ")
+```
+
+Con una función
+```{r ej9bb2_l, echo = TRUE}
+data$vacas_pc <- calc_vacas(x = data$vacas, y = data$humanos)
+
+data_2$vacas_pc <- calc_vacas(x = data_2$vacas, y = data_2$humanos)
+```
+

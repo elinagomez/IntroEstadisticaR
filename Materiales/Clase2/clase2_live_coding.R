@@ -30,12 +30,22 @@ head(encuesta, 3)
 encuesta[1,1] # Valor de fila 1 y columna 1
 encuesta[, 1] # Valor de toda la columna 1 (no especificamos filas, devuelve todas)
 encuesta[1, ] # Valor de toda la fila 1 (no especificamos columnas, devuelve todas)
+encuesta[1:3, ] # Valor de toda filas 1 a 3 (no especificamos columnas, devuelve todas)
 encuesta[1, c(1, 2)] # Valor de fila 1 y las columnas 1 y 2
 encuesta[1, -3] # Valor de fila 1 y las columnas 1 y 2
+encuesta[,"voto"] # Valor de todas las filas y columna voto
+encuesta[1,c("edad", "voto")] # Valor de fila 1 y columnas edad y voto
+encuesta[encuesta$voto=="Partido A",] # Todas las columnas para las filas que en voto tienen partido A
 
-# Copiar objeto
-encuesta_2 <- encuesta
-identical(y = encuesta_2, x = encuesta) # Son iguales
+
+# Primero escribimos el nombre del dataframe, seguido por el símbolo $ y 
+# el nombre de la variable (sin comillas)
+encuesta$edad # Esto imprime todos los valores de esa variable
+
+# En un dataframe cada variable es un vector y podemos fijarnos su clase
+class(encuesta$edad)
+
+mean(encuesta$edad) # Podemos aplicarle funciones (la media en este caso)
 
 
 
@@ -55,14 +65,16 @@ mean(data_ej) # Calculo la media directamente con la función mean()
 # También se puede ingresar data directamente en el argumento x
 mean(c(12, 24, 36, 48, 60)) 
 
+
+
 ## Argumentos de funciones
 media_fun <- mean(data_ej) # Sin explicitar argumento x
 media_fun_x <- mean(x = data_ej) # Explicitando argumento x
 identical(media_fun, media_fun_x) # El mismo resultado
 
 # Dataframe con el resultado de Uruguuay en los últimos 5 mundiales
-uru_mundial <- data.frame(year = c(2002, 2006, 2010, 2014, 2018),
-                          posicion = c(26, NA, 4, 12, 5))
+uru_mundial <- data.frame(year = c(2006, 2010, 2014, 2018,2022),
+                          posicion = c(NA, 4, 12, 5, 18))
 
 # Veamos la posición promedio:
 mean(uru_mundial$posicion) # Como tenemos un dato perdido, la función nos devuelve NA
@@ -98,64 +110,6 @@ resultado_C <- round(mean(data_ej), digits=1)
 identical(resultado_A, resultado_B_2)
 identical(resultado_A, resultado_C)
 
-
-## * 5.4. Crear una función ---- 
-
-# Supongamos que tenemos un dataframe con tres variables: pais, vacas y personas 
-data <- data.frame(pais = c("Uruguay", "Argentina", "Brasil", "Mexico"),
-                   humanos = c(3.4, 43.8, 209.5, 128.6),
-                   vacas = c(11800, 53500, 22600, 16500))
-data
-
-# Ahora quiero calcular la cantidad de vacas per capita. Podría hacer:
-data$vacas_pc <- (data$vacas / 1000) / data$humanos 
-data
-
-# Ahora me gustaría tener una tabla un poco más prolija: números redondeados y "per"
-data$vacas_pc <- round(data$vacas_pc, digits = 1)
-data$vacas_pc <- paste(data$vacas_pc, "per", sep = " ")
-data
-
-# Ok, lo logramos. Pero necesitar calcular más tablas:
-data_2 <- data.frame(pais = c("Uruguay", "Nueva Zelanda", "Australia", "Japón"),
-                     humanos = c(3.4, 4.5, 43.8, 126.3),
-                     vacas = c(11800, 9900, 53500, 3800))
-data_2
-
-# Tendría que copiar y pegar varias veces el mismo código, cambiando el nombre 
-# de los objetos. En este tipo de casos es muy util crear nuestra propia 
-# función, para resumir este conjunto  de operaciones:
-
-calc_vacas <- function(x, y){ 
-  vacas_pc <- (x / 1000) / y   # Calculo la proporción de x / 1000 sobre y
-  vacas_pc_1 <- round(vacas_pc, digits = 2) # Redondeo
-  vacas_pc_2 <- paste(vacas_pc_1, "per", sep = " ")
-  return(vacas_pc_2)
-}
-
-data_2$vacas_pc <- calc_vacas(x = data_2$vacas, y = data_2$humanos)
-data_2
-
-
-## * 5.5. Errores ---- 
-vector_ej <- rnorm(n = 10, mean = 10, sd = 5) # Creo valores aleatorios
-mean(Vector_ej) # Aplico función para obtener la media
-
-# No funciona porque el nombre del objeto está mal escrito
-mean(vector_ej) # Aplico función para obtener la media
-
-## * 5.6. Advertencias ----
-vector_1 <- c("10", "35%", "35", "50") # Vector de caracteres que contiene números 
-vector_1
-
-vector_2 <- as.numeric(vector_1) # Transformo a vector númerico
-vector_2 # Los valores que además del número tenían (%) no pueden pasarse a númericos
-
-vector_1 <- gsub("%", "", vector_1) # Quito los % del vector original y evito la advertencia
-vector_1
-
-vector_2 <- as.numeric(vector_1) # Transformo a vector númerico
-vector_2 # Los valores que además del número tenían (%) no pueden pasarse a númericos
 
 
 
@@ -233,7 +187,7 @@ vcar_1 %in% vcar_2
 ## * 7.3. Operadores booleanos ----
 
 vnum_3 <- c(2, 4, 6, 10, 12, 16)
-6 & 7 %in% vnum_3 # Pruebo si 6 Y 7 están en vnum_3 (tienen que estar ambos para que sea TRUE)
-6 | 7 %in% vnum_3 # Pruebo si al menos uno de 6 o 7 están en vnum_3 (con uno alcanza)
-isTRUE(6 | 7 %in% vnum_3) # Otra forma de testear lo mismo
+6 %in% vnum_3 & 7 %in% vnum_3  # Pruebo si 6 Y 7 están en vnum_3 (tienen que estar ambos para que sea TRUE)
+6 %in% vnum_3 | 7 %in% vnum_3 # Pruebo si al menos uno de 6 o 7 están en vnum_3 (con uno alcanza)
+isTRUE(6 %in% vnum_3 | 7 %in% vnum_3) # Otra forma de testear lo mismo
 
