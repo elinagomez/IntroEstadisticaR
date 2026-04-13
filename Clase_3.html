@@ -4414,13 +4414,26 @@ class: inverse, center, middle
 
 # Dialectos
 
+
 ---
-## Ejercicio
 
-.content-box-blue[
-*Supongamos que tengo estos datos:*
-]
+## Dialectos
 
+- En R podemos realizar una misma operación de muchas maneras distintas. Puesto de otra manera, R como lenguaje de programación tiene distintos &quot;dialectos&quot;, esto es, paquetes (o conjuntos de paquetes) con sus propias funciones, sintaxis y comunidad de usuarios. 
+
+- Para la mayoría de las funciones requeridas para un análisis de datos estándar (importar datos, manipular, modelar y visualizar) existen -de forma muy simplificada- tres grandes dialectos: [R Base](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html), [tidyverse](https://www.tidyverse.org/) y [data.table](https://rdatatable.gitlab.io/data.table/).
+
+- Tidyverse es una colección de paquetes diseñados para el análisis de datos. Este conjunto de paquetes comparte una filosofía de diseño, grámatica y estructura de datos. 
+
+- Las ventajas de Tidyverse están en su gramática (fácil de leer lo que invita a compartir y replicar), consistencia, alcance y su numerosa y creciente comunidad.
+
+
+
+---
+
+## Dialectos (ejemplo) 
+
+.codefontchico[
 
 ```
 ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
@@ -4453,6 +4466,59 @@ class: inverse, center, middle
 ## 
 ##     transpose
 ```
+]
+
+
+
+---
+
+## Dialectos (ejemplo) 
+
+.codefontchico[
+
+``` r
+encuesta # Retomemos el data.frame &quot;encuesta&quot;
+```
+
+```
+##   edad ideologia      voto
+## 1   18 Izquierda Partido A
+## 2   24 Izquierda Partido A
+## 3   80   Derecha Partido C
+```
+
+``` r
+# Supongamos que quiero quedarme solo con las variables de edad y voto
+
+encuesta_base &lt;-  encuesta[ , c(&quot;edad&quot;, &quot;voto&quot;)] # R Base
+colnames(encuesta_base)
+```
+
+```
+## [1] &quot;edad&quot; &quot;voto&quot;
+```
+
+``` r
+encuesta_dt &lt;- as.data.table(encuesta)[ , .(edad, voto)] # Datatable
+colnames(encuesta_dt)
+```
+
+```
+## [1] &quot;edad&quot; &quot;voto&quot;
+```
+
+``` r
+encuesta_tidy &lt;- select(encuesta, edad, voto) # Tidyverse
+colnames(encuesta_tidy)
+```
+
+```
+## [1] &quot;edad&quot; &quot;voto&quot;
+```
+]
+
+
+
 ---
 ## Ejercicio
 
@@ -4597,66 +4663,6 @@ data %&gt;%
 ## 2 Vázquez     584455715198.      7.42
 ```
 
----
-
-## Dialectos
-
-- En R podemos realizar una misma operación de muchas maneras distintas. Puesto de otra manera, R como lenguaje de programación tiene distintos &quot;dialectos&quot;, esto es, paquetes (o conjuntos de paquetes) con sus propias funciones, sintaxis y comunidad de usuarios. 
-
-- Para la mayoría de las funciones requeridas para un análisis de datos estándar (importar datos, manipular, modelar y visualizar) existen -de forma muy simplificada- tres grandes dialectos: [R Base](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html), [tidyverse](https://www.tidyverse.org/) y [data.table](https://rdatatable.gitlab.io/data.table/).
-
-- Tidyverse es una colección de paquetes diseñados para el análisis de datos. Este conjunto de paquetes comparte una filosofía de diseño, grámatica y estructura de datos. 
-
-- Las ventajas de Tidyverse están en su gramática (fácil de leer lo que invita a compartir y replicar), consistencia, alcance y su numerosa y creciente comunidad.
-
-
-
----
-
-## Dialectos (ejemplo) 
-
-.codefontchico[
-
-``` r
-encuesta # Retomemos el data.frame &quot;encuesta&quot;
-```
-
-```
-##   edad ideologia      voto
-## 1   18 Izquierda Partido A
-## 2   24 Izquierda Partido A
-## 3   80   Derecha Partido C
-```
-
-``` r
-# Supongamos que quiero quedarme solo con las variables de edad y voto
-
-encuesta_base &lt;-  encuesta[ , c(&quot;edad&quot;, &quot;voto&quot;)] # R Base
-colnames(encuesta_base)
-```
-
-```
-## [1] &quot;edad&quot; &quot;voto&quot;
-```
-
-``` r
-encuesta_dt &lt;- as.data.table(encuesta)[ , .(edad, voto)] # Datatable
-colnames(encuesta_dt)
-```
-
-```
-## [1] &quot;edad&quot; &quot;voto&quot;
-```
-
-``` r
-encuesta_tidy &lt;- select(encuesta, edad, voto) # Tidyverse
-colnames(encuesta_tidy)
-```
-
-```
-## [1] &quot;edad&quot; &quot;voto&quot;
-```
-]
 ---
 class: inverse, center, middle
 
