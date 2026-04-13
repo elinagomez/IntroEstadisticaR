@@ -19,7 +19,19 @@ mis_canciones_favoritas <- data.frame(nombre = c("Sugar Magnolia","Touch of grey
 # Imprime ambos objetos
 mi_segunda_cfavorita <- mis_canciones_favoritas[2, ]
 print(mi_segunda_cfavorita)
-mis_bandas <- mis_canciones_favoritas[ , 3]
+
+#Alternativa:
+mi_segunda_cfavorita <- mis_canciones_favoritas[mis_canciones_favoritas$nombre=="Touch of grey", ]
+print(mi_segunda_cfavorita)
+
+
+mis_bandas <- mis_canciones_favoritas[ , 2]
+print(mis_bandas)
+
+#Alternativas:
+mis_bandas <- mis_canciones_favoritas$banda
+print(mis_bandas)
+mis_bandas <- mis_canciones_favoritas[,"banda"]
 print(mis_bandas)
 
 ## 3. Ahora vamos a trabajar con el siguiente dataframe con datos del Banco 
@@ -36,7 +48,12 @@ paises_eco
 ## 4. Cuál fue la tasa de desempleo en Chile en 2019? y el pbi per capita en
 # Uruguay? (responde en código)
 paises_eco[3, 3]
+#Alternativa:
+paises_eco[paises_eco$pais=="Chile", "desempleo"]
+
 paises_eco[4, 4]
+#Alternativa:
+paises_eco[paises_eco$pais=="Uruguay", "pbi_perc"]
 
 ## 5. Cuál fue la media de desempleo para estos países en 2019? (si hay datos 
 # faltantes excluir al país)
@@ -52,8 +69,17 @@ print(media_desempleo)
 paises_eco[1, 2] == paises_eco[2, 2]
 paises_eco[4, 2] == paises_eco[5, 2]
 
+#Alternativa
+paises_eco[paises_eco$pais=="Argentina", "continente"] == paises_eco[paises_eco$pais=="Chile", "continente"]
+paises_eco[paises_eco$pais=="Uruguay", "continente"] == paises_eco[paises_eco$pais=="Gibraltar", "continente"]
+
+
 # B. Que el desempleo en Brasil es mayor que en Argentina
 paises_eco[2, 3] > paises_eco[1, 3]
+
+#Alternativa
+paises_eco[paises_eco$pais=="Brasil", "desempleo"] > paises_eco[paises_eco$pais=="Argentina", "desempleo"]
+
 
 # C. Que al menos uno de los países tiene una tasa de desempleo de 8.8
 8.8 %in% paises_eco$desempleo
@@ -69,18 +95,3 @@ library(dplyr)
 help(filter)
 paises_eco <- filter(paises_eco, continente == "América Latina")
 paises_eco
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

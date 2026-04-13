@@ -52,6 +52,30 @@ use_extra_styles(
 ```
 
 
+# Repaso
+
+---
+
+## Breve repaso
+
+- 4 secciones de R: consola, script, ambiente y otros 
+
+- Diferencia entre comentarios, calculadora, objetos
+
+- Tipo y clase de objetos
+  - Tipo: tipo de datos dentro del objeto (numérico, carácter, lógico)
+  - Clase: estructura de datos (vector, matriz, lista, dataframes)
+
+- Coercionadores (as.logical, as.character, as.numeric)
+
+- Vectores
+
+- Indexación: []
+
+
+---
+class: inverse, center, middle
+
 # Dataframes 
 
 ---
@@ -398,9 +422,9 @@ vector_2 <- as.numeric(vector_1) # Transformo a vector númerico
 vector_2 # Los valores que además del número tenían (%) no pueden pasarse a númericos
 vector_1[is.na(vector_2)] # Veo qué valores del vector_1 quedaron como NA en vector_2
 vector_1 <- gsub("%", "", vector_1) # Quito los % del vector original 
-vector_1 # Sin valores perdidos
+vector_1 # Sin porcentaje
 vector_2 <- as.numeric(vector_1) # Transformo a vector númerico
-vector_2 # Los valores que además del número tenían (%) no pueden pasarse a númericos
+vector_2 # Sin valores perdidos
 ```
 ]
 

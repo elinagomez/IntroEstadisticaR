@@ -5342,6 +5342,30 @@ class: inverse, center, middle
 
 
 
+# Repaso
+
+---
+
+## Breve repaso
+
+- 4 secciones de R: consola, script, ambiente y otros 
+
+- Diferencia entre comentarios, calculadora, objetos
+
+- Tipo y clase de objetos
+  - Tipo: tipo de datos dentro del objeto (numérico, carácter, lógico)
+  - Clase: estructura de datos (vector, matriz, lista, dataframes)
+
+- Coercionadores (as.logical, as.character, as.numeric)
+
+- Vectores
+
+- Indexación: []
+
+
+---
+class: inverse, center, middle
+
 # Dataframes 
 
 ---
@@ -5819,7 +5843,7 @@ mean(vector_ej) # Aplico función para obtener la media
 ```
 
 ```
-## [1] 11.25748
+## [1] 9.851779
 ```
 
 ---
@@ -5857,7 +5881,7 @@ vector_1[is.na(vector_2)] # Veo qué valores del vector_1 quedaron como NA en ve
 
 ``` r
 vector_1 &lt;- gsub(&quot;%&quot;, &quot;&quot;, vector_1) # Quito los % del vector original 
-vector_1 # Sin valores perdidos
+vector_1 # Sin porcentaje
 ```
 
 ```
@@ -5866,7 +5890,7 @@ vector_1 # Sin valores perdidos
 
 ``` r
 vector_2 &lt;- as.numeric(vector_1) # Transformo a vector númerico
-vector_2 # Los valores que además del número tenían (%) no pueden pasarse a númericos
+vector_2 # Sin valores perdidos
 ```
 
 ```
