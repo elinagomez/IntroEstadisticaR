@@ -144,18 +144,62 @@ class: inverse, center, middle
 
 # Dialectos
 
+
 ---
-## Ejercicio
 
-.content-box-blue[
-*Supongamos que tengo estos datos:*
-]
+## Dialectos
 
-```{r ej2a, echo = FALSE, results='hide'}
+- En R podemos realizar una misma operación de muchas maneras distintas. Puesto de otra manera, R como lenguaje de programación tiene distintos "dialectos", esto es, paquetes (o conjuntos de paquetes) con sus propias funciones, sintaxis y comunidad de usuarios. 
+
+- Para la mayoría de las funciones requeridas para un análisis de datos estándar (importar datos, manipular, modelar y visualizar) existen -de forma muy simplificada- tres grandes dialectos: [R Base](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html), [tidyverse](https://www.tidyverse.org/) y [data.table](https://rdatatable.gitlab.io/data.table/).
+
+- Tidyverse es una colección de paquetes diseñados para el análisis de datos. Este conjunto de paquetes comparte una filosofía de diseño, grámatica y estructura de datos. 
+
+- Las ventajas de Tidyverse están en su gramática (fácil de leer lo que invita a compartir y replicar), consistencia, alcance y su numerosa y creciente comunidad.
+
+```{r ej1, echo = FALSE, results='hide'}
+encuesta <- data.frame(edad = c(18,24,80), 
+                       ideologia = c("Izquierda", "Izquierda", "Derecha"),
+                       voto = c("Partido A", "Partido A", "Partido C"))
+```
+
+---
+
+## Dialectos (ejemplo) 
+
+.codefontchico[
+```{r ej2, echo = FALSE, results='hide'}
 library(readxl)
 library(tidyverse)
 library(data.table)
+encuesta # Retomemos el data.frame "encuesta"
+# Supongamos que quiero quedarme solo con las variables de edad y voto
+
 ```
+]
+
+
+
+---
+
+## Dialectos (ejemplo) 
+
+.codefontchico[
+```{r ej2_1, echo = TRUE}
+encuesta # Retomemos el data.frame "encuesta"
+# Supongamos que quiero quedarme solo con las variables de edad y voto
+
+encuesta_base <-  encuesta[ , c("edad", "voto")] # R Base
+colnames(encuesta_base)
+encuesta_dt <- as.data.table(encuesta)[ , .(edad, voto)] # Datatable
+colnames(encuesta_dt)
+encuesta_tidy <- select(encuesta, edad, voto) # Tidyverse
+colnames(encuesta_tidy)
+```
+]
+
+
+
 ---
 ## Ejercicio
 
@@ -261,41 +305,6 @@ data %>%
 
 ```
 
----
-
-## Dialectos
-
-- En R podemos realizar una misma operación de muchas maneras distintas. Puesto de otra manera, R como lenguaje de programación tiene distintos "dialectos", esto es, paquetes (o conjuntos de paquetes) con sus propias funciones, sintaxis y comunidad de usuarios. 
-
-- Para la mayoría de las funciones requeridas para un análisis de datos estándar (importar datos, manipular, modelar y visualizar) existen -de forma muy simplificada- tres grandes dialectos: [R Base](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html), [tidyverse](https://www.tidyverse.org/) y [data.table](https://rdatatable.gitlab.io/data.table/).
-
-- Tidyverse es una colección de paquetes diseñados para el análisis de datos. Este conjunto de paquetes comparte una filosofía de diseño, grámatica y estructura de datos. 
-
-- Las ventajas de Tidyverse están en su gramática (fácil de leer lo que invita a compartir y replicar), consistencia, alcance y su numerosa y creciente comunidad.
-
-```{r ej1, echo = FALSE, results='hide'}
-encuesta <- data.frame(edad = c(18,24,80), 
-                       ideologia = c("Izquierda", "Izquierda", "Derecha"),
-                       voto = c("Partido A", "Partido A", "Partido C"))
-```
-
----
-
-## Dialectos (ejemplo) 
-
-.codefontchico[
-```{r ej2, echo = TRUE}
-encuesta # Retomemos el data.frame "encuesta"
-# Supongamos que quiero quedarme solo con las variables de edad y voto
-
-encuesta_base <-  encuesta[ , c("edad", "voto")] # R Base
-colnames(encuesta_base)
-encuesta_dt <- as.data.table(encuesta)[ , .(edad, voto)] # Datatable
-colnames(encuesta_dt)
-encuesta_tidy <- select(encuesta, edad, voto) # Tidyverse
-colnames(encuesta_tidy)
-```
-]
 ---
 class: inverse, center, middle
 
